@@ -6,6 +6,7 @@
     }); */
   
   const titleClickHandler = function(event){
+    event.preventDefault();
     const clickedElement = this;
     console.log('Link was clicked!');
     
@@ -19,7 +20,7 @@
 
     /* add class 'active' to the clicked link */
     const clickedElement = document.getElementById('clickedElement')
-    clickedElement.classList.add('active')
+    clickedElement.classList.add('active');
     console.log('clickedElement:', clickedElement);
 
     /* remove class 'active' from all articles */
