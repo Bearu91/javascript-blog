@@ -24,16 +24,24 @@
     console.log('clickedElement:', clickedElement);
 
     /* remove class 'active' from all articles */
-    const activeArticles = document.querySelectorAll('.post active');
-
-    for(let activeArticle of activeArticles){
-      activeArticle.classList.remove('active');
+    function removeactiveArticles() {
+      document.querySelectorAll('.post active').forEach(function (activeArticles) {
+      activeArticles.classList.remove('active')
+    });
     }
+
     /* get 'href' attribute from the clicked link */
-
+    clickedElement = document.getElementById('clickedElement');
+    const articleSelector = clickedElement.getAttribute('href');
+    console.log('href', articleSelector);
+    
     /* find the correct article using the selector (value of 'href' attribute) */
-
+    const targetArticle = document.querySelector('href')
+    console.log('href', targetArticle)
     /* add class 'active' to the correct article */
+    const clickedElement = document.getElementById('clickedElement')
+    targetArticle.classList.add('active');
+
   }
   
   const links = document.querySelectorAll('.titles a');
