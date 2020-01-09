@@ -5,17 +5,27 @@ const links = document.querySelectorAll('.titles a');
 console.log('links:', links);
 }); */
 
-const optArticleTagsSelector = 'post-tags .list';
 
-function generatePostlinks() {
+
+function generatePostlinks(tag) {
   let html = '';
   const posts = document.querySelectorAll('.post')
   for (let post of posts) {
-    const title = post.querySelector('.post-title').innerHTML;
-    const id = post.getAttribute('id');
-    const link = '<li><a href="#" class="post-link" data-postId="' + id + '">' + title + '</a></li>';
-    html = html + link;
+    if (tag) {
+      if (post.getAttribute('data-tags').indexOf(tag) > -1) {
+        const title = post.querySelector('.post-title').innerHTML;
+        const id = post.getAttribute('id');
+        const link = '<li><a href="#" class="post-link" data-postId="' + id + '">' + title + '</a></li>';
+        html = html + link;
+    } else {
+      const title = post.querySelector('.post-title').innerHTML;
+      const id = post.getAttribute('id');
+      const link = '<li><a href="#" class="post-link data-postId="' + id + '">' + title + '</a></li>';
+      html = html + link;
+  
+    }
   }
+
   const target = document.querySelector('.titles');
   target.innerHTML = html;
   const postLinks = document.querySelectorAll('.post-link');
@@ -25,7 +35,9 @@ function generatePostlinks() {
       const id = event.target.getAttribute('data-postId');
       setActivePost(id);
     });
+    tagsWrapper.innerHTML = html;
   }
+  addClickListenersToTags();
 }
 function setActivePost(postId) {
   const posts = document.querySelectorAll('.post');
@@ -36,37 +48,12 @@ function setActivePost(postId) {
 }
 generatePostLinks();
 
-function generateTags() {
-  /* find all articles */
-  articles = querySelectorAll('.post')
-  for (let article of articles) {
-    console.log(article);
+function addClickListenersToTags() {
+  const tags = document.querySelectorAll('.tags');
+  for (let tag of tags) {
+    tag.addEventListener('cilck', function (event){
+      displayTags(event.target.getAttribute('data-tagId'));
+    })
   }
-  const findWrapper = article.querySelector(optArticleTagsSelector);
-  let html = '';
-  const articleTags = article.getAttribute('data-tags');
-
-  /* START LOOP: for every article: */
-
-  /* find tags wrapper */
-
-  /* make html variable with empty string */
-
-  /* get tags from data-tags attribute */
-
-  /* split tags into array */
-  const articleTagsArray = articleTags.split(' ');
-  /* START LOOP: for each tag */
-for(let tag of articleTagsArray)
-  /* generate HTML of the link */
-  const link = '<li><a href="#tag" class="post-link" data-postId="' + id + '">' + findWrapper + '</a></li>';
-  /* add generated code to html variable */
-html = html +link;
-  /* END LOOP: for each tag */
-
-  /* insert HTML of all the links into the tags wrapper */
-
-  /* END LOOP: for every article: */
 }
-
-generateTags();
+  
