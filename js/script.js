@@ -56,4 +56,12 @@ function addClickListenersToTags() {
     })
   }
 }
-  
+function generateAuthors () {
+  let html = '';
+  const authors = document.querySelectorAll('.post-author');
+  for (let author of authors){
+    const author = post-author.getAttribute(??)
+    const link = '<li><a href="#" class="post-author" data-postId="' + author + '">' + ?? + '</a></li>';
+    html = html + link;
+  }
+}
