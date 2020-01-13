@@ -4,7 +4,11 @@ function generateLink(id, title) {
     return '<li><a href="#" class="post-link" data-postId="' + id + '">' + title + '</a></li> ';
 }
 
+const optCloudClassCount = 5
+const optCloudClassPrefix = tag-size-
+calculateTagClass(count, params){
 
+}
 function generatePostlinks() {
     let html = '';
     let allTags = {};
@@ -43,6 +47,18 @@ function generatePostlinks() {
         });
         const tagList = document.querySelector('.tags');
         // fragment kodu do poprawy poniewaz nie umiem zrobic tego co wymaga kodilla
+        function calculateTagsParams(){
+        const tagsParams = calculateTagsParams(allTags);
+        console.log('tagsParams:', tagsParams)
+        for(let tag in tags){
+            console.log(tag + ' is used ' + tags[tag] + ' times');
+            if(tags[tag] > params.max){
+                params.max = tags[tag];
+              }if (tags[tag] < params.min){
+                  params.min = tags[tag];
+              }
+              return params;
+          }}
         let allTagsHTML = '';
         for(let tag in allTags){
             allTagsHTML += tag + ' (' + allTags[tag] + ') ';
@@ -50,6 +66,7 @@ function generatePostlinks() {
         tagList.innerHTML = allTagsHTML;
     }
     addClickListenersToTags();
+    calculateTagsParams();
 
     function setActivePost(postId) {
         const posts = document.querySelectorAll('.post');
